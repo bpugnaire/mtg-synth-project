@@ -1,0 +1,8 @@
+{ 
+  "samples": ["tabla-dha", "tabla-dhin", "tabla-na", "tabla-tin"],
+  
+  "grid": [[true, false, false, true, false, false],
+           [false, true, false, false, false, false],
+           [false, false, true, false, false, true],
+           [false, false, false, false, true, false]] 
+}
