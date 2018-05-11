@@ -4,10 +4,10 @@ This experiment might be renamed *tinytracks* later at some point, depending on 
 
 ## Setup instructions
 
-You'll need node and npm installed, then:
+You'll need node and yarn installed, then:
 
 ```
-$ npm i
-$ npm start
+$ yarn install
+$ yarn
 ```
 
