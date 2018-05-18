@@ -1,13 +1,4 @@
-# tinysynth
+This is the repo of my work at Music Technology Group as part of my internship.
 
-This experiment might be renamed *tinytracks* later at some point, depending on what it becomes.
-
-## Setup instructions
-
-You'll need node and yarn installed, then:
-
-```
-$ yarn install
-$ yarn
-```
+Reference : https://github.com/n1k0/tinysynth
 
