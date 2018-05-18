@@ -1,7 +1,7 @@
 {
-  "name": "tinysynth",
+  "name": "bp_tinysynth",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "homepage": "https://bpugnaire.github.io/mtg-synth-project/",
   "scripts": {
     "deploy": "npm run build && gh-pages -d build",

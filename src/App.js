@@ -21,10 +21,21 @@ import "./App.css";
 import "react-mdl/extra/css/material.light_blue-pink.min.css";
 import "react-mdl/extra/material.js";
 
+
 import * as sequencer from "./sequencer";
 import * as model from "./model";
-import samples from "./samples.json";
+import allSamples from "./samples.json";
 import presets from "./presets/presets-list.json";
+import turkishSamples from "./turkish-samples.json";
+import indianSamples from "./indian-samples.json";
+
+
+import { 
+  Tab, 
+  Tabs, 
+  TabList, 
+  TabPanel } from 'react-tabs';
+
 
 class SampleSelector extends Component {
   state: {
@@ -52,7 +63,7 @@ class SampleSelector extends Component {
   };
 
   render() {
-    const {current} = this.props;
+    const {current, samples} = this.props;
     const {open} = this.state;
     if (open) {
       return (
@@ -79,6 +90,7 @@ function TrackListView({
   muteTrack,
   clearTrack,
   deleteTrack,
+  samples,
 }) {
   return (
     <tbody>{
@@ -86,7 +98,7 @@ function TrackListView({
         return (
           <tr key={i}className="track">
             <th>
-              <SampleSelector id={track.id} current={track.name} onChange={updateTrackSample} />
+              <SampleSelector id={track.id} current={track.name} onChange={updateTrackSample} samples={samples} />
             </th>
             <td className="vol">
               <Slider min={0} max={1} step={.1} value={track.vol}
@@ -203,8 +215,8 @@ class App extends Component {
         } = JSON.parse(atob(hash));
         this.initializeState({
           bpm,
-          tracks: model.decodeTracks(tracks),
           loopLength,
+          tracks: model.decodeTracks(tracks),
         });
       } catch(e) {
         console.warn("Unable to parse hash", hash, e);
@@ -220,7 +232,7 @@ class App extends Component {
 
   }
 
-  initializeState(state: {bpm?: number, tracks: Track[], loopLength?: number}) {
+  initializeState(state: {bpm?: number,loopLength?: number, tracks: Track[]}) {
     this.state = {
       bpm: 120,
       playing: false,
@@ -235,6 +247,7 @@ class App extends Component {
   }
 
   start = () => {
+    Tone.Transport.context.resume();
     this.setState({playing: true});
     this.loop.start();
   };
@@ -353,12 +366,19 @@ class App extends Component {
     const {updateBPM, start, stop, addTrack, share, closeDialog, updateLoopLength, setPreset} = this;
     return (
       <div className="app">
-        <h3>tinysynth</h3>
+      <Tabs>
+      <TabList>
+        <Tab>Sandbox Mode</Tab>
+        <Tab>Indian</Tab>
+        <Tab>Turkish</Tab>
+      </TabList>
+  
+      <TabPanel>
+      <h3>tinysynth</h3>
         {shareHash ?
           <ShareDialog hash={shareHash} closeDialog={closeDialog} /> : null}
         <table>
-          <tr>
-            <td className= "loopLength" colSpan="51">
+            <td className="loopLength">
               <form>
                 <label> 
                   Loop Length:
@@ -366,7 +386,40 @@ class App extends Component {
                 </label>
               </form>
             </td>
-            <td className= "presetSelector"> Preset Selector
+          <TrackListView
+            tracks={tracks}
+            currentBeat={currentBeat}
+            toggleTrackBeat={this.toggleTrackBeat}
+            setTrackVolume={this.setTrackVolume}
+            updateTrackSample={this.updateTrackSample}
+            muteTrack={this.muteTrack}
+            randomSong={this.randomSong}
+            clearTrack={this.clearTrack}
+            deleteTrack={this.deleteTrack}
+            samples={allSamples}
+            />
+          <Controls {...{bpm, updateBPM, playing, start, stop, addTrack, share}} />
+        </table>
+        <tr>
+        <a href={this.state.downloadHash} download="mypreset.json" onClick={evt => this.updateDownloadHref(evt)}>Download Set as JSON</a>
+
+        </tr>
+      </TabPanel>
+      <TabPanel>
+      <h3>tinysynth</h3>
+        {shareHash ?
+          <ShareDialog hash={shareHash} closeDialog={closeDialog} /> : null}
+        <table>
+          <tr>
+            <td className="loopLength">
+              <form>
+                <label> 
+                  Loop Length:
+                  <input type="number" value={loopLength} onChange={evt => updateLoopLength(evt)} min={0} max={48} />
+                </label>
+              </form>
+            </td>
+            <td className="presetSelector"> Preset Selector
               <select onChange={evt => setPreset(evt)} >{
                 presets.map((preset, i) => {
                   return <option key={i}>{preset}</option>;
@@ -385,13 +438,52 @@ class App extends Component {
             randomSong={this.randomSong}
             clearTrack={this.clearTrack}
             deleteTrack={this.deleteTrack}
+            samples={indianSamples}
             />
           <Controls {...{bpm, updateBPM, playing, start, stop, addTrack, share}} />
         </table>
-        <tr>
-        <a href={this.state.downloadHash} download="mypreset.json" onClick={evt => this.updateDownloadHref(evt)}>Download Set as JSON</a>
+      </TabPanel>
+      <TabPanel>
+      <h3>tinysynth</h3>
+        {shareHash ?
+          <ShareDialog hash={shareHash} closeDialog={closeDialog} /> : null}
+        <table>
+          <tr>
+            <td className="loopLength" colSpan="51">
+              <form>
+                <label> 
+                  Loop Length:
+                  <input type="number" value={loopLength} onChange={evt => updateLoopLength(evt)} min={0} max={48} />
+                </label>
+              </form>
+            </td>
+            <td className="presetSelector"> Preset Selector
+              <select onChange={evt => setPreset(evt)} >{
+                presets.map((preset, i) => {
+                  return <option key={i}>{preset}</option>;
+                 })
+              }
+              </select>
+            </td>
+          </tr>
+          <TrackListView
+            tracks={tracks}
+            currentBeat={currentBeat}
+            toggleTrackBeat={this.toggleTrackBeat}
+            setTrackVolume={this.setTrackVolume}
+            updateTrackSample={this.updateTrackSample}
+            muteTrack={this.muteTrack}
+            randomSong={this.randomSong}
+            clearTrack={this.clearTrack}
+            deleteTrack={this.deleteTrack}
+            samples={turkishSamples}
+            />
+          <Controls {...{bpm, updateBPM, playing, start, stop, addTrack, share}} />
+        </table>
+        </TabPanel>
+    </Tabs>
 
-        </tr>
+        
       </div>
       
     );

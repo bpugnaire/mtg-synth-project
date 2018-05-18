@@ -7,10 +7,10 @@ import samples from "./samples.json";
 
 export function initTracks(loopLength): Track[] {
   return [
-    {id: 1, name: "hihat-reso", vol: 1, muted: false, beats: initBeats(loopLength)},
-    {id: 2, name: "hihat-plain", vol: 1, muted: false, beats: initBeats(loopLength)},
-    {id: 3, name: "snare-vinyl01", vol: 1, muted: false, beats: initBeats(loopLength)},
-    {id: 4, name: "kick-electro01", vol: 1, muted: false, beats: initBeats(loopLength)},
+    {id: 1, name: "-- choose sample --", vol: 1, muted: false, beats: initBeats(loopLength)},
+    {id: 2, name: "-- choose sample --", vol: 1, muted: false, beats: initBeats(loopLength)},
+    {id: 3, name: "-- choose sample --", vol: 1, muted: false, beats: initBeats(loopLength)},
+    {id: 4, name: "-- choose sample --", vol: 1, muted: false, beats: initBeats(loopLength)},
   ];
 }
 
@@ -23,7 +23,7 @@ export function addTrack(tracks: Track[], loopLength: number) {
   return [
     ...tracks, {
       id,
-      name: "kick-electro01",
+      name: "-- choose sample --",
       vol: 1,
       muted: false,
       beats: initBeats(loopLength),
