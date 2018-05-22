@@ -172,7 +172,7 @@ function Controls({bpm, updateBPM, playing, start, stop, addTrack, share}) {
   );
 }
 
-function ShareDialog({hash, closeDialog}) {
+function ShareDialog({hash, closeDialog, downloadHash,updateDownloadHref}) {
   return (
     <Dialog open>
       <DialogTitle>Share</DialogTitle>
@@ -183,6 +183,9 @@ function ShareDialog({hash, closeDialog}) {
             href={"#" + hash} onClick={event => event.preventDefault()}>Link</a>
         </p>
         <p>Right-click, <em>Copy link address</em> to copy the link.</p>
+        <p> If you want to contribute, you can send us the JSON of your loop so we can add it to the presets : </p>
+        <a href={downloadHash} download="mypreset.json" onClick={evt => updateDownloadHref(evt)}>Download Set as JSON</a>
+
       </DialogContent>
       <DialogActions>
         <Button colored type="button" onClick={closeDialog}>close</Button>
@@ -362,8 +365,8 @@ class App extends Component {
   }
 
   render() {
-    const {bpm, currentBeat, playing, shareHash, tracks, loopLength} = this.state;
-    const {updateBPM, start, stop, addTrack, share, closeDialog, updateLoopLength, setPreset} = this;
+    const {bpm, currentBeat, playing, shareHash, tracks, loopLength, downloadHash} = this.state;
+    const {updateBPM, start, stop, addTrack, share, closeDialog, updateLoopLength, setPreset, updateDownloadHref} = this;
     return (
       <div className="app">
       <Tabs>
@@ -376,8 +379,8 @@ class App extends Component {
       <TabPanel>
       <h3>tinysynth</h3>
         {shareHash ?
-          <ShareDialog hash={shareHash} closeDialog={closeDialog} /> : null}
-        <table>
+          <ShareDialog hash={shareHash} closeDialog={closeDialog} downloadHash={downloadHash} updateDownloadHref={updateDownloadHref} /> : null}
+          <table>
             <td className="loopLength">
               <form>
                 <label> 
@@ -400,15 +403,12 @@ class App extends Component {
             />
           <Controls {...{bpm, updateBPM, playing, start, stop, addTrack, share}} />
         </table>
-        <tr>
-        <a href={this.state.downloadHash} download="mypreset.json" onClick={evt => this.updateDownloadHref(evt)}>Download Set as JSON</a>
 
-        </tr>
       </TabPanel>
       <TabPanel>
       <h3>tinysynth</h3>
         {shareHash ?
-          <ShareDialog hash={shareHash} closeDialog={closeDialog} /> : null}
+          <ShareDialog hash={shareHash} closeDialog={closeDialog} downloadHash={downloadHash} updateDownloadHref={updateDownloadHref} /> : null}
         <table>
           <tr>
             <td className="loopLength">
@@ -446,8 +446,8 @@ class App extends Component {
       <TabPanel>
       <h3>tinysynth</h3>
         {shareHash ?
-          <ShareDialog hash={shareHash} closeDialog={closeDialog} /> : null}
-        <table>
+          <ShareDialog hash={shareHash} closeDialog={closeDialog} downloadHash={downloadHash} updateDownloadHref={updateDownloadHref} /> : null}
+          <table>
           <tr>
             <td className="loopLength" colSpan="51">
               <form>

@@ -98,8 +98,8 @@
   "tom-lofi",
   "tom-rototom",
   "tom-short",
-  "tek",
-  "düm",
+  "bender-tek",
+  "bender-düm",
   "tabla-dhen",
   "tabla-dhek",
   "tabla-dhe",
@@ -116,5 +116,12 @@
   "tabla-tak",
   "tabla-tin",
   "tabla-tit",
-  "tabla-te"
+  "tabla-te",
+  "darbuka-düm",
+  "darbuka-tek",
+  "darbuka-tokat",
+  "def-düm",
+  "def-tek",
+  "def-tokat",
+  "def-zil"
 ]
