@@ -25,7 +25,8 @@ import "react-mdl/extra/material.js";
 import * as sequencer from "./sequencer";
 import * as model from "./model";
 import allSamples from "./samples.json";
-import presets from "./presets/presets-list.json";
+import indianPresets from "./presets/indian-presets.json";
+import turkishPresets from "./presets/turkish-presets.json"
 import turkishSamples from "./turkish-samples.json";
 import indianSamples from "./indian-samples.json";
 
@@ -421,7 +422,7 @@ class App extends Component {
             </td>
             <td className="presetSelector"> Preset Selector
               <select onChange={evt => setPreset(evt)} >{
-                presets.map((preset, i) => {
+                indianPresets.map((preset, i) => {
                   return <option key={i}>{preset}</option>;
                  })
               }
@@ -449,7 +450,7 @@ class App extends Component {
           <ShareDialog hash={shareHash} closeDialog={closeDialog} downloadHash={downloadHash} updateDownloadHref={updateDownloadHref} /> : null}
           <table>
           <tr>
-            <td className="loopLength" colSpan="51">
+            <td className="loopLength">
               <form>
                 <label> 
                   Loop Length:
@@ -459,7 +460,7 @@ class App extends Component {
             </td>
             <td className="presetSelector"> Preset Selector
               <select onChange={evt => setPreset(evt)} >{
-                presets.map((preset, i) => {
+                turkishPresets.map((preset, i) => {
                   return <option key={i}>{preset}</option>;
                  })
               }
