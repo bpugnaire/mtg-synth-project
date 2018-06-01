@@ -97,7 +97,7 @@ function TrackListView({
     <tbody>{
       tracks.map((track, i) => {
         return (
-          <tr key={i}className="track">
+          <tr key={i} className="track">
             <th>
               <SampleSelector id={track.id} current={track.name} onChange={updateTrackSample} samples={samples} />
             </th>
@@ -160,7 +160,7 @@ function Controls({bpm, updateBPM, playing, start, stop, addTrack, share}) {
           BPM <input type="number" value={bpm} onChange={onChange} />
         </td>
         <td colSpan="13">
-          <Slider min={30} max={240} value={bpm} onChange={onChange} />
+          <Slider min={30} max={300} value={bpm} onChange={onChange} />
         </td>
         <td colSpan="2">
           <FABButton mini onClick={share} title="Share">
