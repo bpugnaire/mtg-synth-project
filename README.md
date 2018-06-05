@@ -1,5 +1,6 @@
 # MTG Intership Project
-One Paragraph of project description goes here
+
+This is the repository of my 3-month work on a music application for educational purposes at the Music Technology Group of UPF Barcelona.
 
 ## Getting Started
 
