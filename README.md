@@ -34,7 +34,7 @@ npm start
 ```
 This environment allow you to dynamically tweek the source code and immediatly see how it affects the project.
 
-## Adding new sound files
+### Adding new sound files
 
 If you want to add new sound files, you should first convert them in .wav.
 
@@ -42,8 +42,8 @@ You can now store you file in ~/public/audio.
 
 Then you have to manually add the name of the file to the adequate json file : samples.json for sandbox tab, hindustani-samples.json for hindustani tab or turkish-samples.json for turkish tab.
 
-Be carefull, your sound file name has to match the name you add to the json file.
--
+**Be carefull, your sound file name has to match the name you add to the json file.**
+
 
 For example if my sound file is named tabla-dha.wav in the json file I should write :
 
@@ -55,13 +55,15 @@ For example if my sound file is named tabla-dha.wav in the json file I should wr
 
 ### Adding new presets
 
-For Users :
--
+**For Users :**
+
 Download the loop you just created as a .json file and send it to the MTG.
 
-For Administrators :
--
-You have to store the .json file in ~/src/presets and then update the list of presets manually following the same rules as in the "Adding new soud files" section which means using the exact same names for both the preset file and the name inside the preset list file.
+**For Administrators :**
+
+First store the .json file of the preset in ~/src/presets.
+
+Then update the list of presets manually following the same rules as in the "Adding new soud files" section which means using the exact same names for both the preset file and the name inside the preset list file.
 
 
 ## Author
