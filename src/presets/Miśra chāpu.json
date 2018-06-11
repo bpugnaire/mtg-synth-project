@@ -1,0 +1,36 @@
+{
+	"samples": [
+		"mridangam-dheem",
+		"mridangam-dhin",
+		"mridangam-num"
+	],
+	"grid": [
+		[
+			true,
+			false,
+			false,
+			true,
+			false,
+			false,
+			false
+		],
+		[
+			false,
+			true,
+			false,
+			false,
+			true,
+			true,
+			false
+		],
+		[
+			false,
+			false,
+			true,
+			false,
+			false,
+			false,
+			true
+		]
+	]
+}

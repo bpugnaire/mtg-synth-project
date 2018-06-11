@@ -25,10 +25,13 @@ import "react-mdl/extra/material.js";
 import * as sequencer from "./sequencer";
 import * as model from "./model";
 import allSamples from "./samples.json";
-import indianPresets from "./presets/indian-presets.json";
 import turkishPresets from "./presets/turkish-presets.json"
 import turkishSamples from "./turkish-samples.json";
-import indianSamples from "./indian-samples.json";
+import hindustaniPresets from "./presets/hindustani-presets.json";
+import hindustaniSamples from "./hindustani-samples.json";
+import carnaticPresets from "./presets/carnatic-presets.json";
+import carnaticSamples from "./carnatic-samples.json";
+
 
 
 import { 
@@ -373,7 +376,8 @@ class App extends Component {
       <Tabs>
       <TabList>
         <Tab>Sandbox Mode</Tab>
-        <Tab>Indian</Tab>
+        <Tab>Hindustani</Tab>
+        <Tab>Carnatic</Tab>
         <Tab>Turkish</Tab>
       </TabList>
   
@@ -422,7 +426,7 @@ class App extends Component {
             </td>
             <td className="presetSelector"> Preset Selector
               <select onChange={evt => setPreset(evt)} >{
-                indianPresets.map((preset, i) => {
+                hindustaniPresets.map((preset, i) => {
                   return <option key={i}>{preset}</option>;
                  })
               }
@@ -439,12 +443,51 @@ class App extends Component {
             randomSong={this.randomSong}
             clearTrack={this.clearTrack}
             deleteTrack={this.deleteTrack}
-            samples={indianSamples}
+            samples={hindustaniSamples}
             />
           <Controls {...{bpm, updateBPM, playing, start, stop, addTrack, share}} />
         </table>
       </TabPanel>
       <TabPanel>
+      <h3>tinysynth</h3>
+        {shareHash ?
+          <ShareDialog hash={shareHash} closeDialog={closeDialog} downloadHash={downloadHash} updateDownloadHref={updateDownloadHref} /> : null}
+          <table>
+          <tr>
+            <td className="loopLength">
+              <form>
+                <label> 
+                  Loop Length:
+                  <input type="number" value={loopLength} onChange={evt => updateLoopLength(evt)} min={0} max={48} />
+                </label>
+              </form>
+            </td>
+            <td className="presetSelector"> Preset Selector
+              <select onChange={evt => setPreset(evt)} >{
+                carnaticPresets.map((preset, i) => {
+                  return <option key={i}>{preset}</option>;
+                 })
+              }
+              </select>
+            </td>
+          </tr>
+          <TrackListView
+            tracks={tracks}
+            currentBeat={currentBeat}
+            toggleTrackBeat={this.toggleTrackBeat}
+            setTrackVolume={this.setTrackVolume}
+            updateTrackSample={this.updateTrackSample}
+            muteTrack={this.muteTrack}
+            randomSong={this.randomSong}
+            clearTrack={this.clearTrack}
+            deleteTrack={this.deleteTrack}
+            samples={carnaticSamples}
+            />
+          <Controls {...{bpm, updateBPM, playing, start, stop, addTrack, share}} />
+        </table>
+        </TabPanel>
+
+            <TabPanel>
       <h3>tinysynth</h3>
         {shareHash ?
           <ShareDialog hash={shareHash} closeDialog={closeDialog} downloadHash={downloadHash} updateDownloadHref={updateDownloadHref} /> : null}
@@ -483,8 +526,6 @@ class App extends Component {
         </table>
         </TabPanel>
     </Tabs>
-
-        
       </div>
       
     );
