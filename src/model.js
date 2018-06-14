@@ -151,15 +151,15 @@ export function setPreset(tracks: Tracks[], samples: string[], grid: boolean[]):
 export function presetHandler(presetName: string): {samples: string[], grid: boolean[]} {
   let path = "./presets/"+ presetName +".json";
   let preset = require(path);
-  return {samples: preset.samples, grid: preset.grid}
+  return {samples: preset.samples, grid: preset.grid, bpm: preset.bpm}
 }
 
-export function tracksToJSON(tracks: Tracks[]): {samples: string[], grid: boolean[]} {
+export function tracksToJSON(tracks: Tracks[], bpm: Number): {samples: string[], grid: boolean[]} {
   let samples = [];
   let grid = [];
   for (var i = 0; i < tracks.length; i++) {
     samples.push(tracks[i].name);
     grid.push(tracks[i].beats) 
   }    
-  return {samples: samples, grid: grid}
+  return {samples: samples, grid: grid, bpm: bpm}
 }

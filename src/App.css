@@ -30,10 +30,6 @@
   background: #f5f5eb;
 }
 
-.beat:nth-of-type(4n-1) {
-  border-left: 4px solid lightblue;
-}
-
 .beat > a {
   display: inline-block;
   width: 40px;

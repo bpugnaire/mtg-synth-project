@@ -38,7 +38,8 @@ import {
   Tab, 
   Tabs, 
   TabList, 
-  TabPanel } from 'react-tabs';
+  TabPanel 
+} from 'react-tabs';
 
 
 class SampleSelector extends Component {
@@ -82,7 +83,6 @@ class SampleSelector extends Component {
     }
   }
 }
-
 
 
 function TrackListView({
@@ -354,16 +354,17 @@ class App extends Component {
       this.setNewLoopLength(16);
     }
     else {
-      const {samples, grid} = model.presetHandler(name);
+      const {samples, grid, bpm} = model.presetHandler(name);
       const newLoopLength = grid[0].length;
       this.setNewLoopLength(newLoopLength);
       const newTracks = model.setPreset(this.state.tracks, samples, grid);
       this.updateTracks(newTracks);
+      this.updateBPM(bpm);
     }
   }
 
   updateDownloadHref = (evt) => {
-    let obj = model.tracksToJSON(this.state.tracks)
+    let obj = model.tracksToJSON(this.state.tracks, this.state.bpm);
     let downloadHash = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(obj,null,'\t'));
     this.setState({downloadHash})
   }
