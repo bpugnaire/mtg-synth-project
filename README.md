@@ -1,10 +1,10 @@
 # MTG Intership Project
 
-This is the repository of my 3-month work on a music application for educational purposes at the Music Technology Group of UPF Barcelona.
+This is the repository of my 4-month work on a music application for educational purposes at the Music Technology Group of UPF Barcelona.
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 ### Prerequisites
 
@@ -32,7 +32,7 @@ You can now launch the project on your browser with :
 ```
 npm start
 ```
-This environment allow you to dynamically tweek the source code and immediatly see how it affects the project.
+This environment allow you to dynamically tweak the source code and immediatly see how it affects the project.
 
 ### Adding new sound files
 
@@ -55,20 +55,22 @@ For example if my sound file is named tabla-dha.wav in the json file I should wr
 
 ### Adding new presets
 
-**For Users :**
+**For Casual Users :**
 
 Download the loop you just created as a .json file and send it to the MTG.
 
-**For Administrators :**
+**For Developpers :**
 
 First store the .json file of the preset in ~/src/presets.
 
 Then update the list of presets manually following the same rules as in the "Adding new soud files" section which means using the exact same names for both the preset file and the name inside the preset list file.
 
+Notice that there's a preset list for each tab so be carefull where you decide to put your preset.
+
 
 ## Author
 
-* **Baptiste Pugnaire** - Disruptive Student at Ecole Centrale Marseille, France
+* **Baptiste Pugnaire** -  Student at Ecole Centrale Marseille, France
 
 ## Acknowledgments
 
